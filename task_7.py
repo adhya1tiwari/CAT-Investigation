@@ -1,6 +1,4 @@
 import turtle
-<<<<<<< HEAD
-
 # Set up the screen
 screen = turtle.Screen()
 screen.bgcolor("White")
@@ -42,6 +40,8 @@ step_any_loop(1,2,3,2,1)
 # Hide the turtle and keep the window open
 pen.hideturtle()
 =======
+=======
+>>>>>>> 4c4eaf2 (Thursday April 10th)
 #create turtle screen and set background colour
 screen=turtle.Screen()
 screen.bgcolor("White")
@@ -69,5 +69,8 @@ step_3_loop(2,4,1)
 # #hide turtle
 pen.hideturtle()
 #keep turtle window open when done
+<<<<<<< HEAD
+>>>>>>> 4c4eaf2 (Thursday April 10th)
+=======
 >>>>>>> 4c4eaf2 (Thursday April 10th)
 turtle.done()
