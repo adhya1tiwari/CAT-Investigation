@@ -1,29 +1,24 @@
 import turtle
-#create turtle screen and set background colour
-screen=turtle.Screen()
+
+# Set up the screen
+screen = turtle.Screen()
 screen.bgcolor("White")
-# create a turtle object to draw with
-pen=turtle.Turtle()
-# set colour of the turtle
+
+# Set up the pen
+pen = turtle.Turtle()
 pen.color("Blue")
-# set speed of the turtle
 pen.speed(2)
-def step_3_loop(first,second,third):
-    list_move = [second,third]
-    while pen.position() != (0,0):
-        for item in list_move:
-            pen.forward(item*10)
+
+# Define the step_3_loop function
+def step_3_loop(first, second, third, sequence):
+    list_move = [first, second, third]
+    for i in range(sequence):
+        for m in list_move:
+            pen.forward(m * 10)
             pen.right(90)
-step_3_loop(2,4,1)
-# # draw line
-# pen.forward(20)
-# pen.right(90)
-# pen.forward(30)
-# pen.right(90)
-# pen.forward(20)
-# pen.right(90)
-# pen.forward(30)
-# #hide turtle
+# Call the function
+step_3_loop(2, 4, 1, 6)
+
+# Hide the turtle and keep the window open
 pen.hideturtle()
-#keep turtle window open when done
 turtle.done()
