@@ -1,5 +1,4 @@
 import turtle
-
 # Set up the screen
 screen = turtle.Screen()
 screen.bgcolor("White")
@@ -8,29 +7,21 @@ screen.bgcolor("White")
 pen = turtle.Turtle()
 pen.color("Blue")
 pen.speed(2)
+pen.hideturtle()
 
-# Define the step_3_loop function
-# def step_3_loop(first, second, third, sequence):
-#     list_move = [first, second, third]
-#     for i in range(sequence):
-#         for m in list_move:
-#             pen.forward(m * 10)
-#             pen.right(90)
-# pen.forward(20)
-# pen.right(90)
-# pen.forward(30)
-# pen.right(90)
-# pen.forward(20)
-# pen.right(90)
-# pen.forward(30)
+def refresh():
+    screen.clear()
+    pen.penup()
+    pen.goto(0,0)
+    pen.pendown()
 
-def step_any_loop(*args):
+def step_any_loop(list_move):
     initial_position = pen.position()
     initial_heading = pen.heading()
     iteration = 0
     maximum_iterations = 1000
     while True:
-        for i in args:
+        for i in list_move:
             pen.forward(i*10)
             pen.right(90)
         iteration += 1
@@ -42,10 +33,28 @@ def step_any_loop(*args):
             break
         if iteration == maximum_iterations:
             break
+        
+def user_interface():
+    while True:
+        loop = screen.textinput("Geometric Patterns with Straight Lines","Type pattern")
+        loop_value = eval(loop)
+        while type(loop_value) != tuple:
+            loop = screen.textinput("Geometric Patterns with Straight Lines","Type pattern")
+            loop_value = eval(loop)
+        loop_list = list(loop_value)
+        step_any_loop(loop_list)
+        restart = screen.textinput("Done","Do you want to type another pattern?").lower()
+        while True:
+            if restart == "yes":
+                refresh()
+                break
+            elif restart == "no":
+                return
+            else:
+                restart = screen.textinput("Invalid input","Do you want to type another pattern?").lower()
 # Call the function
-step_any_loop(1,2,3,2,1)
-# step_3_loop(2, 4, 1, 6)
+user_interface()
+
 
 # Hide the turtle and keep the window open
-pen.hideturtle()
 turtle.done()
