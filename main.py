@@ -1,4 +1,5 @@
 import turtle
+import re
 # Set up the screen
 screen = turtle.Screen()
 screen.bgcolor("White")
@@ -33,15 +34,20 @@ def step_any_loop(list_move):
             break
         if iteration == maximum_iterations:
             break
-        
+def is_valid_pattern(s):
+    pattern = r'^\(\s*\d+\s*(\s*,\s*\d+\s*)*\)$'
+    return bool(re.match(pattern,s))
+
 def user_interface():
     while True:
-        loop = screen.textinput("Geometric Patterns with Straight Lines","Type pattern")
-        loop_value = eval(loop)
-        while type(loop_value) != tuple:
-            loop = screen.textinput("Geometric Patterns with Straight Lines","Type pattern")
-            loop_value = eval(loop)
-        loop_list = list(loop_value)
+        loop = screen.textinput("Geometric Patterns with Straight Lines","Type pattern in this format (1,2,3)")
+        while True:
+            if is_valid_pattern(loop) == True:
+                values = loop[1:-1].split(',')
+                loop_list = [int(v.strip()) for v in values if v.strip()]
+                break
+            else:
+                loop = screen.textinput("Invalid Input","Type pattern in this format (1,2,3)")
         step_any_loop(loop_list)
         restart = screen.textinput("Done","Do you want to type another pattern?").lower()
         while True:
@@ -51,10 +57,8 @@ def user_interface():
             elif restart == "no":
                 return
             else:
-                restart = screen.textinput("Invalid input","Do you want to type another pattern?").lower()
+                restart = screen.textinput("Invalid input: type yes or no","Do you want to type another pattern?").lower()
 # Call the function
 user_interface()
-
-
 # Hide the turtle and keep the window open
 turtle.done()
