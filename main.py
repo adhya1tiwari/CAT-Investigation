@@ -67,6 +67,7 @@ def step_any_loop(list_move):
             and abs(current_position[1]-initial_position[1]) < 0.01 
             and abs(current_heading-initial_heading) < 0.01):
             break
+    feedback_label.config(text="Done", foreground="blue")
 
 def is_valid_pattern(s):
     pattern = r'^\(\s*\d+\s*(\s*,\s*\d+\s*)*\)$'
